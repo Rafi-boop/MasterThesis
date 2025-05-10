@@ -14,10 +14,11 @@ MasterThesis/
 │   ├── ISignatureSchemeSelector.cs
 │   └── SignatureSchemeSelector.cs
 ├── Schemes/
-│   └── RSA/                # RSA implementation
+│   ├── RSA/                # RSA implementation
 │       ├── RsaSignatureScheme.cs
 │       ├── RsaPublicKey.cs
-│       └── RsaPrivateKey.cs
+│       ├── RsaPrivateKey.cs
+│   └── OtherSchemes/
 ├── Controllers/            # Web API controller (optional module)
 │   └── SignatureController.cs
 ├── Program.cs              # App entry point
@@ -34,4 +35,35 @@ MasterThesis/
 - Strongly typed key wrappers (`RsaPublicKey`, `RsaPrivateKey`)
 - Support for DI and runtime scheme selection
 - REST API controller for signing/verification
-- Easily extensible with new schemes (e.g., Dilithium, SPHINCS+)
+- Easily extensible for future Schemes
+
+---
+
+## Example Requests (Postman or Curl)
+
+### Generate Key Pair
+
+```
+GET /api/signature/rsa/generate
+```
+
+### Sign
+
+```json
+POST /api/signature/(Scheme)/sign
+{
+  "message": "SGVsbG8gd29ybGQ=",
+  "privateKey": "<base64-encoded-private-key>"
+}
+```
+
+### Verify
+
+```json
+POST /api/signature/(Scheme)/verify
+{
+  "message": "SGVsbG8gd29ybGQ=",
+  "signature": "<base64-signature>",
+  "publicKey": "<base64-public-key>"
+}
+```

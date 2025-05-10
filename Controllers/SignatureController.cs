@@ -1,4 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
+using System.Text;
+using MasterThesis.DTOs;
+
+namespace MasterThesis.Controllers;
 
 [ApiController]
 [Route("api/signature")]
@@ -11,36 +15,58 @@ public class SignatureController : ControllerBase
         _selector = selector;
     }
 
-    [HttpPost("{scheme}/sign")]
-    public IActionResult Sign(string scheme, [FromBody] SignRequest request)
+    [HttpGet("{scheme}/generate")]
+    public ActionResult<KeyPairResponse> GenerateKeyPair(string scheme)
     {
-        var algo = _selector.GetScheme(scheme);
-        var signature = algo.Sign(Convert.FromBase64String(request.Message), Convert.FromBase64String(request.PrivateKey));
-        return Ok(Convert.ToBase64String(signature));
+        var algo = _selector.GetRawScheme(scheme);
+
+        if (algo is ISignatureScheme<RsaPublicKey, RsaPrivateKey> rsa)
+        {
+            var (pub, priv) = rsa.GenerateKeys();
+
+            return Ok(new KeyPairResponse
+            {
+                Algorithm = rsa.Name,
+                PublicKey = pub.ToBase64(),
+                PrivateKey = priv.ToBase64()
+            });
+        }
+
+        return BadRequest("Unsupported scheme.");
+    }
+
+    [HttpPost("{scheme}/sign")]
+    public ActionResult<string> Sign(string scheme, [FromBody] SignRequest request)
+    {
+        var algo = _selector.GetRawScheme(scheme);
+
+        if (algo is ISignatureScheme<RsaPublicKey, RsaPrivateKey> rsa)
+        {
+            var privateKey = new RsaPrivateKey(Convert.FromBase64String(request.PrivateKey));
+            var message = Convert.FromBase64String(request.Message);
+
+            var signature = rsa.Sign(message, privateKey);
+            return Ok(Convert.ToBase64String(signature));
+        }
+
+        return BadRequest("Unsupported scheme.");
     }
 
     [HttpPost("{scheme}/verify")]
-    public IActionResult Verify(string scheme, [FromBody] VerifyRequest request)
+    public ActionResult<object> Verify(string scheme, [FromBody] VerifyRequest request)
     {
-        var algo = _selector.GetScheme(scheme);
-        bool valid = algo.Verify(
-            Convert.FromBase64String(request.Message),
-            Convert.FromBase64String(request.Signature),
-            Convert.FromBase64String(request.PublicKey)
-        );
-        return Ok(new { valid });
+        var algo = _selector.GetRawScheme(scheme);
+
+        if (algo is ISignatureScheme<RsaPublicKey, RsaPrivateKey> rsa)
+        {
+            var publicKey = new RsaPublicKey(Convert.FromBase64String(request.PublicKey));
+            var message = Convert.FromBase64String(request.Message);
+            var signature = Convert.FromBase64String(request.Signature);
+
+            var isValid = rsa.Verify(message, signature, publicKey);
+            return Ok(new { valid = isValid });
+        }
+
+        return BadRequest("Unsupported scheme.");
     }
-}
-
-public class SignRequest
-{
-    public string Message { get; set; } = string.Empty;
-    public string PrivateKey { get; set; } = string.Empty;
-}
-
-public class VerifyRequest
-{
-    public string Message { get; set; } = string.Empty;
-    public string Signature { get; set; } = string.Empty;
-    public string PublicKey { get; set; } = string.Empty;
 }
