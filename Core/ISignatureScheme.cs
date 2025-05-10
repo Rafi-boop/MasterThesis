@@ -1,4 +1,4 @@
-public interface ISignatureScheme<TPublicKey, TPrivateKey>
+public interface ISignatureScheme<TPublicKey, TPrivateKey> : ISignatureSchemeBase
     where TPublicKey : IPublicKey
     where TPrivateKey : IPrivateKey
 {
@@ -7,6 +7,4 @@ public interface ISignatureScheme<TPublicKey, TPrivateKey>
     byte[] Sign(byte[] message, TPrivateKey privateKey);
 
     bool Verify(byte[] message, byte[] signature, TPublicKey publicKey);
-
-    string Name { get; }
 }

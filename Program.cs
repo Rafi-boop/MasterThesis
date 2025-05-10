@@ -1,18 +1,38 @@
 ﻿using System.Text;
 
-class Program
+namespace MasterThesis
 {
-    static void Main()
+    class Program
     {
-        var scheme = SignatureSchemeFactory.Create("rsa");
-        Console.WriteLine($"Using scheme: {scheme.Name}");
+        static void Main()
+        {
+            try
+            {
+                var selector = new SignatureSchemeSelector();
 
-        var (pub, priv) = scheme.GenerateKeys();
-        var message = Encoding.UTF8.GetBytes("Factory pattern is cool!");
+                var rawScheme = selector.GetRawScheme("rsa");
 
-        var signature = scheme.Sign(message, priv);
-        bool isValid = scheme.Verify(message, signature, pub);
+                if (rawScheme is ISignatureScheme<RsaPublicKey, RsaPrivateKey> scheme)
+                {
+                    Console.WriteLine($"Using scheme: {scheme.Name}");
 
-        Console.WriteLine($"Signature valid: {isValid}");
+                    var (pub, priv) = scheme.GenerateKeys();
+                    var message = Encoding.UTF8.GetBytes("Factory pattern is cool!");
+
+                    var signature = scheme.Sign(message, priv);
+                    bool isValid = scheme.Verify(message, signature, pub);
+
+                    Console.WriteLine($"Signature valid: {isValid}");
+                }
+                else
+                {
+                    Console.WriteLine("Selected scheme is not compatible with expected types.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+            }
+        }
     }
 }
