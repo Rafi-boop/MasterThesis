@@ -50,4 +50,12 @@ public class SignatureController : ControllerBase
 
         return BadRequest("Unsupported scheme.");
     }
+
+    [HttpGet("schemes")]
+    public ActionResult<IEnumerable<string>> ListSchemes()
+    {
+        var schemes = _selector.ListAvailableSchemes();
+        return Ok(schemes);
+    }
+
 }
