@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -9,10 +9,15 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.3.0" />
-    <NativeLibrary Include="runtimes\win-x64\native\libsodium.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </NativeLibrary>
     <PackageReference Include="Xunit" Version="2.9.3" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Include="runtimes\win-x64\native\libsodium.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>libsodium.dll</Link>
+    </None>
+  </ItemGroup>
+
 
 </Project>

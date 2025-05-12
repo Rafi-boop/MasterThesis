@@ -8,11 +8,12 @@ public class SignatureSchemeSelector : ISignatureSchemeSelector
     public SignatureSchemeSelector()
     {
         // Register supported schemes
-        _schemes["rsa"] = new RsaSignatureScheme();
-        _schemes["ecdsa"] = new EcdsaSignatureScheme();
-        _schemes["eddsa"] = new EdDsaSignatureScheme();
-        // _schemes["dilithium"] = new DilithiumSignatureScheme();
-        // _schemes["sphincs"] = new SphincsSignatureScheme();
+        _schemes["rsa"] = new SignatureSchemeAdapter<RsaPublicKey, RsaPrivateKey>(new RsaSignatureScheme());
+        _schemes["ecdsa"] = new SignatureSchemeAdapter<EdDsaPublicKey, EdDsaPrivateKey>(new EdDsaSignatureScheme());
+        _schemes["eddsa"] = new SignatureSchemeAdapter<EdDsaPublicKey, EdDsaPrivateKey>(new EdDsaSignatureScheme());
+        // _schemes["dilithium"] = new SignatureSchemeAdapter<RsaPublicKey, RsaPrivateKey>(new RsaSignatureScheme());
+        // _schemes["sphincs"] = new SignatureSchemeAdapter<EdDsaPublicKey, EdDsaPrivateKey>(new EdDsaSignatureScheme());
+        // _schemes["falconplus"] = new SignatureSchemeAdapter<EdDsaPublicKey, EdDsaPrivateKey>(new EdDsaSignatureScheme());
     }
 
     public object GetRawScheme(string name)

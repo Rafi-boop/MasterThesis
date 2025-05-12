@@ -1,38 +1,13 @@
-﻿using System.Text;
+﻿var builder = WebApplication.CreateBuilder(args);
 
-namespace MasterThesis
-{
-    class Program
-    {
-        static void Main()
-        {
-            try
-            {
-                var selector = new SignatureSchemeSelector();
+// Register controllers
+builder.Services.AddControllers();
 
-                var rawScheme = selector.GetRawScheme("rsa");
+// Register your selector (singleton for demo)
+builder.Services.AddSingleton<ISignatureSchemeSelector, SignatureSchemeSelector>();
 
-                if (rawScheme is ISignatureScheme<RsaPublicKey, RsaPrivateKey> scheme)
-                {
-                    Console.WriteLine($"Using scheme: {scheme.Name}");
+var app = builder.Build();
 
-                    var (pub, priv) = scheme.GenerateKeys();
-                    var message = Encoding.UTF8.GetBytes("Factory pattern is cool!");
+app.MapControllers(); // Map [ApiController] endpoints
 
-                    var signature = scheme.Sign(message, priv);
-                    bool isValid = scheme.Verify(message, signature, pub);
-
-                    Console.WriteLine($"Signature valid: {isValid}");
-                }
-                else
-                {
-                    Console.WriteLine("Selected scheme is not compatible with expected types.");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"An error occurred: {ex.Message}");
-            }
-        }
-    }
-}
+app.Run();
