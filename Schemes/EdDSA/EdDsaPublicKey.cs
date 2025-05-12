@@ -1,8 +1,8 @@
-public sealed class RsaPublicKey : IPublicKey
+public sealed class EdDsaPublicKey : IPublicKey
 {
     private readonly byte[] _key;
 
-    public RsaPublicKey(byte[] key)
+    public EdDsaPublicKey(byte[] key)
     {
         _key = key ?? throw new ArgumentException("Public key must not be null.");
     }

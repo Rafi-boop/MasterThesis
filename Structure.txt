@@ -1,40 +1,37 @@
-CryptoApiFramework/
-│
-├── CryptoApiFramework.csproj
-│
-├── Core/                              ← Generic interfaces & abstractions
-│   ├── ISignatureScheme.cs
-│   ├── IPublicKey.cs
-│   ├── IPrivateKey.cs
-│   └── SignatureSchemeFactory.cs      ← Optional central registry
-│
-├── Schemes/                           ← Each algorithm in its own folder
-│   └── RSA/
-│       ├── RsaSignatureScheme.cs
-│       ├── RsaPublicKey.cs
-│       └── RsaPrivateKey.cs
-│
-├── Wrappers/                          ← Native/C interop for PQC schemes (future)
-│   └── Dilithium/
-│       ├── DilithiumSignatureScheme.cs
-│       ├── DilithiumPublicKey.cs
-│       ├── DilithiumPrivateKey.cs
-│       ├── DilithiumWrapper.cs        ← DllImport wrapper
-│       └── libdilithium.dll           ← Native C library (not tracked in Git)
-│
-├── Tests/                             ← xUnit/NUnit tests for each scheme
-│   ├── RsaSignatureSchemeTests.cs
-│   └── SignatureSchemeContractTests.cs
-│
-├── Examples/                          ← Example usage or console demo
-│   ├── ConsoleDemo.cs
-│   └── GenerateAndSignExample.cs
-│
-└── Api/                               ← (Optional) ASP.NET Core Web API
-    ├── Program.cs
-    ├── Controllers/
-    │   └── SignatureController.cs
-    └── DTOs/
-        ├── SignRequest.cs
-        ├── VerifyRequest.cs
-        └── KeyPairResponse.cs
+MasterThesis
+ ┣ .git/
+ ┣ bin/
+ ┣ Controllers
+ ┃ ┗ SignatureController.cs
+ ┣ Core
+ ┃ ┣ IPrivateKey.cs
+ ┃ ┣ IPublicKey.cs
+ ┃ ┣ ISignatureScheme.cs
+ ┃ ┣ ISignatureSchemeBase.cs
+ ┃ ┣ ISignatureSchemeSelector.cs
+ ┃ ┗ SignatureSchemeSelector.cs
+ ┣ DTOs
+ ┃ ┣ KeyPairResponse.cs
+ ┃ ┣ SignRequest.cs
+ ┃ ┗ VerifyRequest.cs
+ ┣ Examples
+ ┣ Schemes
+ ┃ ┣ CRYSTALS-Dilithium
+ ┃ ┣ ECDSA
+ ┃ ┃ ┣ EcdsaPrivateKey.cs
+ ┃ ┃ ┣ EcdsaPublicKey.cs
+ ┃ ┃ ┗ EcdsaSignatureScheme.cs
+ ┃ ┣ EdDSA
+ ┃ ┣ Falcon
+ ┃ ┣ RSA
+ ┃ ┃ ┣ RsaPrivateKey.cs
+ ┃ ┃ ┣ RsaPublicKey.cs
+ ┃ ┃ ┗ RsaSignatureScheme.cs
+ ┃ ┗ SPHINCS+
+ ┣ .gitignore
+ ┣ MasterThesis.csproj
+ ┣ MasterThesis.sln
+ ┣ Program.cs
+ ┣ README.md
+ ┣ Structure.txt
+ ┗ todo.md

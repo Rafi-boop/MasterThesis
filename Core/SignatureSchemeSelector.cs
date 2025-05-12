@@ -10,6 +10,7 @@ public class SignatureSchemeSelector : ISignatureSchemeSelector
         // Register supported schemes
         _schemes["rsa"] = new RsaSignatureScheme();
         _schemes["ecdsa"] = new EcdsaSignatureScheme();
+        _schemes["eddsa"] = new EdDsaSignatureScheme();
         // _schemes["dilithium"] = new DilithiumSignatureScheme();
         // _schemes["sphincs"] = new SphincsSignatureScheme();
     }

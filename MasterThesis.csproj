@@ -9,6 +9,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.3.0" />
+    <NativeLibrary Include="runtimes\win-x64\native\libsodium.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </NativeLibrary>
+    <PackageReference Include="Xunit" Version="2.9.3" />
   </ItemGroup>
 
 </Project>

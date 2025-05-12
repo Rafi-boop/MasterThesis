@@ -1,8 +1,8 @@
-public sealed class RsaPrivateKey : IPrivateKey
+public sealed class EdDsaPrivateKey : IPrivateKey
 {
     private byte[] _key;
 
-    public RsaPrivateKey(byte[] key)
+    public EdDsaPrivateKey(byte[] key)
     {
         _key = key ?? throw new ArgumentException("Private key must not be null.");
     }
