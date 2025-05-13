@@ -1,6 +1,11 @@
 MasterThesis
- ┣ .git/
- ┣ bin/
+ ┣ .git
+ ┣ bin
+ ┃ ┗ Debug
+ ┃ ┃ ┣ net8.0
+ ┃ ┃ ┃ ┗ libsodium.dll
+ ┃ ┃ ┗ net9.0
+ ┃ ┃ ┃ ┣ libsodium.dll
  ┣ Controllers
  ┃ ┗ SignatureController.cs
  ┣ Core
@@ -8,13 +13,20 @@ MasterThesis
  ┃ ┣ IPublicKey.cs
  ┃ ┣ ISignatureScheme.cs
  ┃ ┣ ISignatureSchemeBase.cs
+ ┃ ┣ ISignatureSchemeDynamic.cs
  ┃ ┣ ISignatureSchemeSelector.cs
+ ┃ ┣ SignatureSchemeAdapter.cs
  ┃ ┗ SignatureSchemeSelector.cs
  ┣ DTOs
  ┃ ┣ KeyPairResponse.cs
  ┃ ┣ SignRequest.cs
  ┃ ┗ VerifyRequest.cs
  ┣ Examples
+ ┣ obj
+ ┣ runtimes
+ ┃ ┗ win-x64
+ ┃ ┃ ┗ native
+ ┃ ┃ ┃ ┗ libsodium.dll
  ┣ Schemes
  ┃ ┣ CRYSTALS-Dilithium
  ┃ ┣ ECDSA
@@ -22,12 +34,18 @@ MasterThesis
  ┃ ┃ ┣ EcdsaPublicKey.cs
  ┃ ┃ ┗ EcdsaSignatureScheme.cs
  ┃ ┣ EdDSA
+ ┃ ┃ ┣ EdDsaPrivateKey.cs
+ ┃ ┃ ┣ EdDsaPublicKey.cs
+ ┃ ┃ ┗ EdDsaSignatureScheme.cs
  ┃ ┣ Falcon
  ┃ ┣ RSA
  ┃ ┃ ┣ RsaPrivateKey.cs
  ┃ ┃ ┣ RsaPublicKey.cs
  ┃ ┃ ┗ RsaSignatureScheme.cs
  ┃ ┗ SPHINCS+
+ ┣ Wrappers
+ ┃ ┗ EdDSA
+ ┃ ┃ ┗ SodiumInterop.cs
  ┣ .gitignore
  ┣ MasterThesis.csproj
  ┣ MasterThesis.sln
