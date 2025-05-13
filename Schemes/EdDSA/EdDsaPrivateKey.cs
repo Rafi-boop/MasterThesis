@@ -1,10 +1,17 @@
+using System.Runtime.InteropServices;
+
 public sealed class EdDsaPrivateKey : IPrivateKey
 {
     private byte[] _key;
+    private GCHandle _pinned;
 
     public EdDsaPrivateKey(byte[] key)
     {
-        _key = key ?? throw new ArgumentException("Private key must not be null.");
+        if (key == null || key.Length != Interop.Libsodium.CRYPTO_SIGN_SECRETKEYBYTES)
+            throw new ArgumentException($"Private key must be {Interop.Libsodium.CRYPTO_SIGN_SECRETKEYBYTES} bytes.", nameof(key));
+
+        _key = key.ToArray();
+        _pinned = GCHandle.Alloc(_key, GCHandleType.Pinned);
     }
 
     public byte[] Export() => _key.ToArray();
@@ -13,9 +20,10 @@ public sealed class EdDsaPrivateKey : IPrivateKey
 
     public void Zeroize()
     {
-        if (_key != null)
+        if (_key != null && _key.Length > 0)
         {
             Array.Clear(_key, 0, _key.Length);
+            _pinned.Free();
             _key = Array.Empty<byte>();
         }
     }

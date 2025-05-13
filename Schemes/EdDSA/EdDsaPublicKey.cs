@@ -4,7 +4,10 @@ public sealed class EdDsaPublicKey : IPublicKey
 
     public EdDsaPublicKey(byte[] key)
     {
-        _key = key ?? throw new ArgumentException("Public key must not be null.");
+        if (key == null || key.Length != Interop.Libsodium.CRYPTO_SIGN_PUBLICKEYBYTES)
+            throw new ArgumentException($"Public key must be {Interop.Libsodium.CRYPTO_SIGN_PUBLICKEYBYTES} bytes.", nameof(key));
+
+        _key = key.ToArray();
     }
 
     public byte[] Export() => _key.ToArray();
