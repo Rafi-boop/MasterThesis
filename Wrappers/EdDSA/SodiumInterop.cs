@@ -1,28 +1,38 @@
+using System;
 using System.Runtime.InteropServices;
 
-internal static class SodiumInterop
+internal static partial class Interop
 {
-    public const int PublicKeyBytes = 32;
-    public const int SecretKeyBytes = 64;
-    public const int SignatureBytes = 64;
+    internal static partial class Libsodium
+    {
+        internal const int CRYPTO_SIGN_BYTES = 64;
+        internal const int CRYPTO_SIGN_PUBLICKEYBYTES = 32;
+        internal const int CRYPTO_SIGN_SECRETKEYBYTES = 64;
 
-    [DllImport("libsodium", CallingConvention = CallingConvention.Cdecl)]
-    public static extern int sodium_init();
+        [DllImport("libsodium", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int sodium_init();
 
-    [DllImport("libsodium", CallingConvention = CallingConvention.Cdecl)]
-    public static extern IntPtr sodium_version_string();
+        [DllImport("libsodium", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern IntPtr sodium_version_string();
 
-    [DllImport("libsodium", CallingConvention = CallingConvention.Cdecl)]
-    public static extern void crypto_sign_keypair(byte[] pk, byte[] sk);
+        [DllImport("libsodium", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int crypto_sign_ed25519_keypair(
+            byte[] pk,
+            byte[] sk);
 
-    [DllImport("libsodium", CallingConvention = CallingConvention.Cdecl)]
-    public static extern int crypto_sign_detached(
-        byte[] sig, out long siglen,
-        byte[] m, long mlen,
-        byte[] sk);
+        [DllImport("libsodium", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int crypto_sign_ed25519_detached(
+            byte[] sig,
+            ref ulong siglen,
+            byte[] msg,
+            ulong msglen,
+            byte[] sk);
 
-    [DllImport("libsodium", CallingConvention = CallingConvention.Cdecl)]
-    public static extern int crypto_sign_verify_detached(
-        byte[] sig, byte[] m, long mlen, byte[] pk);
+        [DllImport("libsodium", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int crypto_sign_ed25519_verify_detached(
+            byte[] sig,
+            byte[] msg,
+            ulong msglen,
+            byte[] pk);
+    }
 }
-
