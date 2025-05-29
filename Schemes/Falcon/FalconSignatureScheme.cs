@@ -2,7 +2,7 @@ using System;
 
 public class FalconSignatureScheme : ISignatureScheme<FalconPublicKey, FalconPrivateKey>
 {
-    public string Name => "falcon";
+    public string Name => "Falcon";
 
     public (FalconPublicKey, FalconPrivateKey) GenerateKeys()
     {

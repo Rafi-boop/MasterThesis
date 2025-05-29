@@ -29,9 +29,16 @@
   * [ ] Add to selector
 
 * [ ] **Implement Falcon (Post-Quantum)**
-  * [ ] Compile and wrap native code (watch for float rounding issues)
-  * [ ] Add Falcon scheme + key types
-  * [ ] Register
+  * [x] Compile and wrap native code
+  * [x] Add Falcon scheme + key types
+  * [x] Register
+  * [ ] Improve implementation
+
+* [ ] **Implementation Enhancements**
+  * [x] watch for float rounding issues
+  * [x] Add Falcon scheme + key types
+  * [x] Register
+
 
 ---
 
@@ -47,9 +54,9 @@
 
 ### Security Hardening
 
-* [x] Auto-zero private key buffers after signing (EdDSA implemented)
-* [x] Add input validation for key lengths (EdDSA implemented)
-* [x] Consider timing-attack-resistant compare for signature verification (libsodium does this internally)
+* [ ] Auto-zero private key buffers after signing
+* [ ] Add input validation for key lengths
+* [ ] Consider timing-attack-resistant compare for signature verification (libsodium does this internally)
 * [ ] Optional: integrate `SecureString` or native memory protection for private key storage
 
 ---
