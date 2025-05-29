@@ -13,7 +13,7 @@ public class SignatureSchemeSelector : ISignatureSchemeSelector
         _schemes["eddsa"] = new SignatureSchemeAdapter<EdDsaPublicKey, EdDsaPrivateKey>(new EdDsaSignatureScheme());
         // _schemes["dilithium"] = new SignatureSchemeAdapter<RsaPublicKey, RsaPrivateKey>(new RsaSignatureScheme());
         // _schemes["sphincs"] = new SignatureSchemeAdapter<EdDsaPublicKey, EdDsaPrivateKey>(new EdDsaSignatureScheme());
-        // _schemes["falconplus"] = new SignatureSchemeAdapter<EdDsaPublicKey, EdDsaPrivateKey>(new EdDsaSignatureScheme());
+        _schemes["falcon"] = new SignatureSchemeAdapter<EdDsaPublicKey, EdDsaPrivateKey>(new EdDsaSignatureScheme());
     }
 
     public object GetRawScheme(string name)

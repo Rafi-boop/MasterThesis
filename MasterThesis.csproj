@@ -17,6 +17,10 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Link>libsodium.dll</Link>
     </None>
+    <None Update="runtimes\win-x64\native\falcon.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Link>falcon.dll</Link>
+    </None>
   </ItemGroup>
 
 
