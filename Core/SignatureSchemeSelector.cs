@@ -11,8 +11,8 @@ public class SignatureSchemeSelector : ISignatureSchemeSelector
         _schemes["rsa"] = new SignatureSchemeAdapter<RsaPublicKey, RsaPrivateKey>(new RsaSignatureScheme());
         _schemes["ecdsa"] = new SignatureSchemeAdapter<EdDsaPublicKey, EdDsaPrivateKey>(new EdDsaSignatureScheme());
         _schemes["eddsa"] = new SignatureSchemeAdapter<EdDsaPublicKey, EdDsaPrivateKey>(new EdDsaSignatureScheme());
-        // _schemes["dilithium"] = new SignatureSchemeAdapter<RsaPublicKey, RsaPrivateKey>(new RsaSignatureScheme());
-        // _schemes["sphincs"] = new SignatureSchemeAdapter<EdDsaPublicKey, EdDsaPrivateKey>(new EdDsaSignatureScheme());
+        _schemes["dilithium"] = new SignatureSchemeAdapter<RsaPublicKey, RsaPrivateKey>(new RsaSignatureScheme());
+        _schemes["sphincs"] = new SignatureSchemeAdapter<EdDsaPublicKey, EdDsaPrivateKey>(new EdDsaSignatureScheme());
         _schemes["falcon"] = new SignatureSchemeAdapter<EdDsaPublicKey, EdDsaPrivateKey>(new EdDsaSignatureScheme());
     }
 
