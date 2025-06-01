@@ -1,11 +1,6 @@
 MasterThesis
  ┣ .git
  ┣ bin
- ┃ ┗ Debug
- ┃ ┃ ┣ net8.0
- ┃ ┃ ┃ ┗ libsodium.dll
- ┃ ┃ ┗ net9.0
- ┃ ┃ ┃ ┣ libsodium.dll
  ┣ Controllers
  ┃ ┗ SignatureController.cs
  ┣ Core
@@ -26,9 +21,15 @@ MasterThesis
  ┣ runtimes
  ┃ ┗ win-x64
  ┃ ┃ ┗ native
- ┃ ┃ ┃ ┗ libsodium.dll
+ ┃ ┃ ┃ ┣ dilithium.dll
+ ┃ ┃ ┃ ┣ falcon.dll
+ ┃ ┃ ┃ ┣ libsodium.dll
+ ┃ ┃ ┃ ┗ sphincs.dll
  ┣ Schemes
  ┃ ┣ CRYSTALS-Dilithium
+ ┃ ┃ ┣ DilithiumPrivateKey.cs
+ ┃ ┃ ┣ DilithiumPublicKey.cs
+ ┃ ┃ ┗ DilithiumSignatureScheme.cs
  ┃ ┣ ECDSA
  ┃ ┃ ┣ EcdsaPrivateKey.cs
  ┃ ┃ ┣ EcdsaPublicKey.cs
@@ -38,14 +39,26 @@ MasterThesis
  ┃ ┃ ┣ EdDsaPublicKey.cs
  ┃ ┃ ┗ EdDsaSignatureScheme.cs
  ┃ ┣ Falcon
+ ┃ ┃ ┣ FalconPrivateKey.cs
+ ┃ ┃ ┣ FalconPublicKey.cs
+ ┃ ┃ ┗ FalconSignatureScheme.cs
  ┃ ┣ RSA
  ┃ ┃ ┣ RsaPrivateKey.cs
  ┃ ┃ ┣ RsaPublicKey.cs
  ┃ ┃ ┗ RsaSignatureScheme.cs
  ┃ ┗ SPHINCS+
+ ┃ ┃ ┣ SphincsPrivateKey.cs
+ ┃ ┃ ┣ SphincsPublicKey.cs
+ ┃ ┃ ┗ SphincsSignatureScheme.cs
  ┣ Wrappers
- ┃ ┗ EdDSA
+ ┃ ┣ CRYSTALS-Dilithium
+ ┃ ┃ ┗ DilithiumInterop.cs
+ ┃ ┣ EdDSA
  ┃ ┃ ┗ SodiumInterop.cs
+ ┃ ┣ Falcon
+ ┃ ┃ ┗ FalconInterop.cs
+ ┃ ┗ Sphincs+
+ ┃ ┃ ┗ SphincsInterop.cs
  ┣ .gitignore
  ┣ MasterThesis.csproj
  ┣ MasterThesis.sln
