@@ -1,100 +1,41 @@
-## `TODO.md` — MasterThesis Crypto API Framework
+# TODO
 
-### Core Implementation (Must Have)
+## 1. Code Structure and Refactoring
+- [ ] Improve code structure and refactor existing classes, interfaces, and controllers.
+- [ ] Enhance modularity, clarity, and maintainability of the framework.
+- [ ] Remove duplicate logic in runtime scheme selection and adapters.
 
-* [x] **Implement ECDSA**
-  * [x] `EcdsaSignatureScheme.cs`
-  * [x] `EcdsaPrivateKey.cs`
-  * [x] `EcdsaPublicKey.cs`
-  * [x] Add to `SignatureSchemeSelector.cs`
-  * [x] Test via controller (`/api/signature/ecdsa/...`)
+## 2. Security Review and Hardening
+- [ ] Perform a thorough security review of the entire codebase.
+- [ ] Check for potential security vulnerabilities in scheme implementations (e.g., proper zeroization of private keys, buffer size checks, constant-time operations).
+- [ ] Ensure secure handling of sensitive data (e.g., private keys in memory and logs).
+- [ ] Mitigate risk of exposing private keys at runtime (e.g., avoid logging them, ensure secure export/serialization).
 
-* [x] **Implement EdDSA (Ed25519)**
-  * [x] Use native `libsodium` via `DllImport` (instead of NSec)
-  * [x] `EdDsaSignatureScheme.cs`
-  * [x] `EdDsaPrivateKey.cs`, `EdDsaPublicKey.cs`
-  * [x] Register in `SignatureSchemeSelector.cs`
-  * [x] Expose via controller `/api/signature/eddsa/...`
-  * [x] Add secure memory zeroing, input length checks, and pinning
-  * [x] Add dynamic adapter for controller support
+## 3. Testing Improvements
+- [ ] Improve and extend integration tests for all signature schemes.
+- [ ] Include edge cases, invalid inputs, and failure modes.
+- [ ] Automate testing
 
-* [ ] **Implement Dilithium (Post-Quantum)**
-  * [ ] Integrate C reference via `DllImport`
-  * [ ] Wrap as `DilithiumSignatureScheme`, `DilithiumPublicKey`, `DilithiumPrivateKey`
-  * [ ] Add to selector
+## 4. Example Implementations and Documentation
+- [ ] Provide clear and comprehensive example implementations:
+  - [ ] Example of library import and usage for integrating the framework.
+  - [ ] Example API usage for external consumers.
+- [ ] Include proper documentation about:
+  - [ ] Framework
+  - [ ] How to use
 
-* [ ] **Implement SPHINCS+ (Post-Quantum)**
-  * [ ] Compile C reference into DLL
-  * [ ] Add signature scheme + key wrappers
-  * [ ] Add to selector
+## 5. API Packaging and Documentation
+- [ ] Package the API for easy deployment (e.g. NuGet).
+- [ ] Publish Swagger UI documentation for all API endpoints.
 
-* [ ] **Implement Falcon (Post-Quantum)**
-  * [x] Compile and wrap native code
-  * [x] Add Falcon scheme + key types
-  * [x] Register
-  * [ ] Improve implementation
+## 6. External Validation and Feedback
+- [ ] Engage a third-party for independent testing of the API and cryptographic primitives.
+- [ ] Validate API usability, correctness, and security with external testers.
 
-* [ ] **Implementation Enhancements**
-  * [x] watch for float rounding issues
-  * [x] Add Falcon scheme + key types
-  * [x] Register
+## 7. Swagger UI Integration
+- [ ] ? Integrate Swagger UI for all REST API endpoints for clear and interactive documentation.
+- [ ] ? Include usage examples and expected payloads for each endpoint.
 
-
----
-
-### API + Controller Enhancements
-
-* [x] Add `/api/signature/{scheme}/generate` endpoint ([x]ECDSA, [x]RSA, [x]EdDSA)
-* [ ] Add structured error responses (e.g., invalid base64, unsupported algorithm)
-* [x] Add `ListAvailableSchemes()` endpoint for introspection
-* [ ] Add Swagger UI for REST API docs
-* [ ] Secure private key exposure in logs/responses (maybe hide or mask?)
-
----
-
-### Security Hardening
-
-* [ ] Auto-zero private key buffers after signing
-* [ ] Add input validation for key lengths
-* [ ] Consider timing-attack-resistant compare for signature verification (libsodium does this internally)
-* [ ] Optional: integrate `SecureString` or native memory protection for private key storage
-
----
-
-### Evaluation Prep (for Thesis Write-up)
-
-* [ ] Add benchmark runner: time key generation, signing, and verification for each scheme
-* [ ] Capture average time over N iterations and log
-* [ ] Output benchmark as table or JSON (for thesis appendix)
-
----
-
-### Tests
-
-* [x] Add xUnit test project: `CryptoApiFramework.Tests`
-* [x] Write shared tests for `ISignatureScheme<TPub, TPriv>`:
-  * [x] Generate → Sign → Verify → Check validity
-  * [x] EdDSA: verify correct/incorrect messages, corrupted sig, wrong keys
-* [ ] Add failure tests for other schemes (ECDSA, RSA)
-* [ ] Add fuzzing / edge-case tests
-
----
-
-### Developer UX / Docs
-
-* [ ] Improve `README.md` with curl/Postman/C# examples for all schemes
-* [ ] Add CLI interface for signing/verifying files (optional)
-* [ ] Document how to add a new scheme (developer guide)
-* [ ] Add `.editorconfig` and consistent code style
-
----
-
-### Stretch / Future Ideas
-
-* [ ] Add async support to API methods
-* [ ] Add file upload support for signing/verifying binary files via API
-* [ ] Implement HSM-backed or TPM-backed key storage (Windows-specific)
-* [ ] Add JWT signing/verification using these schemes
-* [ ] Add WebAssembly target for client-side signature verification
-
----
+## 8. Secure Private Key Handling
+- [ ] Review runtime handling of private keys to ensure no accidental exposure in logs or memory.
+- [ ] Validate private key lifecycle management (e.g., zeroization, memory protection).

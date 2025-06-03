@@ -1,6 +1,6 @@
-// Extension of the base interface to offer a dynamic, runtime-friendly API
 using MasterThesis.DTOs;
 
+// Extension of the base interface to offer a dynamic, runtime-friendly API
 public interface ISignatureSchemeDynamic : ISignatureSchemeBase
 {
     KeyPairResponse GenerateKeysDynamic();
