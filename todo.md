@@ -4,6 +4,14 @@
 - [ ] Improve code structure and refactor existing classes, interfaces, and controllers.
 - [ ] Enhance modularity, clarity, and maintainability of the framework.
 - [ ] Remove duplicate logic in runtime scheme selection and adapters.
+```
+/MasterThesis
+ ┣ /src
+ ┃ ┣ /MasterThesis.Core     (NuGet library)
+ ┃ ┣ /MasterThesis.WebAPI   (Self-hosted API project)
+ ┃ ┗ /MasterThesis.Tests
+ ┗ README.md
+```
 
 ## 2. Security Review and Hardening
 - [ ] Perform a thorough security review of the entire codebase.
@@ -26,7 +34,8 @@
 
 ## 5. API Packaging and Documentation
 - [ ] Package the API for easy deployment (e.g. NuGet).
-- [ ] Publish Swagger UI documentation for all API endpoints.
+- [ ] Provide WebAPI as Source Code or package as pre-built .dll/.exe
+- [ ] ? Publish Swagger UI documentation for all API endpoints.
 
 ## 6. External Validation and Feedback
 - [ ] Engage a third-party for independent testing of the API and cryptographic primitives.
