@@ -1,5 +1,6 @@
 namespace MasterThesis.DTOs;
 
+// Response object for key pair generation requests
 public class KeyPairResponse
 {
     public string PublicKey { get; set; } = string.Empty;

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 
+// implementation of ISignatureSchemeSelector, registers supported signature schemes and resolves them dynamically at runtime
 public class SignatureSchemeSelector : ISignatureSchemeSelector
 {
     private readonly Dictionary<string, object> _schemes = new(StringComparer.OrdinalIgnoreCase);

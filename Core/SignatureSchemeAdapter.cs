@@ -1,5 +1,6 @@
 using MasterThesis.DTOs;
 
+// adapter for API 
 public class SignatureSchemeAdapter<TPub, TPriv> : ISignatureSchemeDynamic
     where TPub : IPublicKey
     where TPriv : IPrivateKey
