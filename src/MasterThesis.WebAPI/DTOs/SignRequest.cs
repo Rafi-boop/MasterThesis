@@ -1,4 +1,4 @@
-namespace MasterThesis.DTOs;
+namespace MasterThesis.WebAPI.DTOs;
 
 // Request object for the signing endpoint
 public class SignRequest

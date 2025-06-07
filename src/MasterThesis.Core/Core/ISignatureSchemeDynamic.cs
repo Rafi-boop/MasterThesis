@@ -1,4 +1,4 @@
-using MasterThesis.DTOs;
+using MasterThesis.Core.DTOs;
 
 // Extension of the base interface to offer a dynamic, runtime-friendly API
 public interface ISignatureSchemeDynamic : ISignatureSchemeBase

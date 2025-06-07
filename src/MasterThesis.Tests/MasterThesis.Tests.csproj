@@ -8,36 +8,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="coverlet.collector" Version="6.0.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
     <PackageReference Include="xunit" Version="2.9.3" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+    <PackageReference Include="coverlet.collector" Version="6.0.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <Using Include="Xunit" />
+    <ProjectReference Include="..\MasterThesis.Core\MasterThesis.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MasterThesis\MasterThesis.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\MasterThesis\runtimes\win-x64\native\libsodium.dll">
+    <None Include="..\..\runtimes\win-x64\native\*.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>libsodium.dll</Link>
-    </None>
-    <None Include="..\MasterThesis\runtimes\win-x64\native\falcon.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>falcon.dll</Link>
-    </None>
-    <None Include="..\MasterThesis\runtimes\win-x64\native\dilithium.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>dilithium.dll</Link>
-    </None>
-    <None Include="..\MasterThesis\runtimes\win-x64\native\sphincs.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Link>sphincs.dll</Link>
     </None>
   </ItemGroup>
 

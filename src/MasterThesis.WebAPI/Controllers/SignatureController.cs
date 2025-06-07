@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Text;
-using MasterThesis.DTOs;
+using MasterThesis.WebAPI.DTOs;
+using MasterThesis.Core.DTOs;
 
 namespace MasterThesis.Controllers;
 

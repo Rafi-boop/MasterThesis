@@ -1,4 +1,4 @@
-using MasterThesis.DTOs;
+using MasterThesis.Core.DTOs;
 
 // adapter for API 
 public class SignatureSchemeAdapter<TPub, TPriv> : ISignatureSchemeDynamic

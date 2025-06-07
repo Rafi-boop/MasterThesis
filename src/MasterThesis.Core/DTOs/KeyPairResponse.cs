@@ -1,4 +1,4 @@
-namespace MasterThesis.DTOs;
+namespace MasterThesis.Core.DTOs;
 
 // Response object for key pair generation requests
 public class KeyPairResponse
