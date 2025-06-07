@@ -1,22 +1,9 @@
 MasterThesis
  ┣ .git
  ┣ bin
- ┣ Controllers
- ┃ ┗ SignatureController.cs
- ┣ Core
- ┃ ┣ IPrivateKey.cs
- ┃ ┣ IPublicKey.cs
- ┃ ┣ ISignatureScheme.cs
- ┃ ┣ ISignatureSchemeBase.cs
- ┃ ┣ ISignatureSchemeDynamic.cs
- ┃ ┣ ISignatureSchemeSelector.cs
- ┃ ┣ SignatureSchemeAdapter.cs
- ┃ ┗ SignatureSchemeSelector.cs
- ┣ DTOs
- ┃ ┣ KeyPairResponse.cs
- ┃ ┣ SignRequest.cs
- ┃ ┗ VerifyRequest.cs
- ┣ Examples
+ ┣ build
+ ┣ docs
+ ┃ ┗ README.md
  ┣ obj
  ┣ runtimes
  ┃ ┗ win-x64
@@ -25,44 +12,72 @@ MasterThesis
  ┃ ┃ ┃ ┣ falcon.dll
  ┃ ┃ ┃ ┣ libsodium.dll
  ┃ ┃ ┃ ┗ sphincs.dll
- ┣ Schemes
- ┃ ┣ CRYSTALS-Dilithium
- ┃ ┃ ┣ DilithiumPrivateKey.cs
- ┃ ┃ ┣ DilithiumPublicKey.cs
- ┃ ┃ ┗ DilithiumSignatureScheme.cs
- ┃ ┣ ECDSA
- ┃ ┃ ┣ EcdsaPrivateKey.cs
- ┃ ┃ ┣ EcdsaPublicKey.cs
- ┃ ┃ ┗ EcdsaSignatureScheme.cs
- ┃ ┣ EdDSA
- ┃ ┃ ┣ EdDsaPrivateKey.cs
- ┃ ┃ ┣ EdDsaPublicKey.cs
- ┃ ┃ ┗ EdDsaSignatureScheme.cs
- ┃ ┣ Falcon
- ┃ ┃ ┣ FalconPrivateKey.cs
- ┃ ┃ ┣ FalconPublicKey.cs
- ┃ ┃ ┗ FalconSignatureScheme.cs
- ┃ ┣ RSA
- ┃ ┃ ┣ RsaPrivateKey.cs
- ┃ ┃ ┣ RsaPublicKey.cs
- ┃ ┃ ┗ RsaSignatureScheme.cs
- ┃ ┗ SPHINCS+
- ┃ ┃ ┣ SphincsPrivateKey.cs
- ┃ ┃ ┣ SphincsPublicKey.cs
- ┃ ┃ ┗ SphincsSignatureScheme.cs
- ┣ Wrappers
- ┃ ┣ CRYSTALS-Dilithium
- ┃ ┃ ┗ DilithiumInterop.cs
- ┃ ┣ EdDSA
- ┃ ┃ ┗ SodiumInterop.cs
- ┃ ┣ Falcon
- ┃ ┃ ┗ FalconInterop.cs
- ┃ ┗ Sphincs+
- ┃ ┃ ┗ SphincsInterop.cs
+ ┣ src
+ ┃ ┣ MasterThesis.Core
+ ┃ ┃ ┣ Core
+ ┃ ┃ ┃ ┣ IPrivateKey.cs
+ ┃ ┃ ┃ ┣ IPublicKey.cs
+ ┃ ┃ ┃ ┣ ISignatureScheme.cs
+ ┃ ┃ ┃ ┣ ISignatureSchemeBase.cs
+ ┃ ┃ ┃ ┣ ISignatureSchemeDynamic.cs
+ ┃ ┃ ┃ ┣ ISignatureSchemeSelector.cs
+ ┃ ┃ ┃ ┣ SignatureSchemeAdapter.cs
+ ┃ ┃ ┃ ┗ SignatureSchemeSelector.cs
+ ┃ ┃ ┣ Schemes
+ ┃ ┃ ┃ ┣ CRYSTALS-Dilithium
+ ┃ ┃ ┃ ┃ ┣ DilithiumPrivateKey.cs
+ ┃ ┃ ┃ ┃ ┣ DilithiumPublicKey.cs
+ ┃ ┃ ┃ ┃ ┗ DilithiumSignatureScheme.cs
+ ┃ ┃ ┃ ┣ ECDSA
+ ┃ ┃ ┃ ┃ ┣ EcdsaPrivateKey.cs
+ ┃ ┃ ┃ ┃ ┣ EcdsaPublicKey.cs
+ ┃ ┃ ┃ ┃ ┗ EcdsaSignatureScheme.cs
+ ┃ ┃ ┃ ┣ EdDSA
+ ┃ ┃ ┃ ┃ ┣ EdDsaPrivateKey.cs
+ ┃ ┃ ┃ ┃ ┣ EdDsaPublicKey.cs
+ ┃ ┃ ┃ ┃ ┗ EdDsaSignatureScheme.cs
+ ┃ ┃ ┃ ┣ Falcon
+ ┃ ┃ ┃ ┃ ┣ FalconPrivateKey.cs
+ ┃ ┃ ┃ ┃ ┣ FalconPublicKey.cs
+ ┃ ┃ ┃ ┃ ┗ FalconSignatureScheme.cs
+ ┃ ┃ ┃ ┣ RSA
+ ┃ ┃ ┃ ┃ ┣ RsaPrivateKey.cs
+ ┃ ┃ ┃ ┃ ┣ RsaPublicKey.cs
+ ┃ ┃ ┃ ┃ ┗ RsaSignatureScheme.cs
+ ┃ ┃ ┃ ┗ SPHINCS+
+ ┃ ┃ ┃ ┃ ┣ SphincsPrivateKey.cs
+ ┃ ┃ ┃ ┃ ┣ SphincsPublicKey.cs
+ ┃ ┃ ┃ ┃ ┗ SphincsSignatureScheme.cs
+ ┃ ┃ ┣ Wrappers
+ ┃ ┃ ┃ ┣ CRYSTALS-Dilithium
+ ┃ ┃ ┃ ┃ ┗ DilithiumInterop.cs
+ ┃ ┃ ┃ ┣ EdDSA
+ ┃ ┃ ┃ ┃ ┗ SodiumInterop.cs
+ ┃ ┃ ┃ ┣ Falcon
+ ┃ ┃ ┃ ┃ ┗ FalconInterop.cs
+ ┃ ┃ ┃ ┗ Sphincs+
+ ┃ ┃ ┃ ┃ ┗ SphincsInterop.cs
+ ┃ ┃ ┣ MasterThesis.Core.csproj
+ ┃ ┃ ┗ README.md
+ ┃ ┣ MasterThesis.Tests
+ ┃ ┃ ┣ AllSignatureSchemesTests.cs
+ ┃ ┃ ┣ MasterThesis.Tests.csproj
+ ┃ ┃ ┣ README.md
+ ┃ ┃ ┣ SignatureSchemeTests.cs
+ ┃ ┃ ┗ testsetttings.json
+ ┃ ┗ MasterThesis.WebAPI
+ ┃ ┃ ┣ Controllers
+ ┃ ┃ ┃ ┗ SignatureController.cs
+ ┃ ┃ ┣ DTOs
+ ┃ ┃ ┃ ┣ KeyPairResponse.cs
+ ┃ ┃ ┃ ┣ SignRequest.cs
+ ┃ ┃ ┃ ┗ VerifyRequest.cs
+ ┃ ┃ ┣ appsettings.json
+ ┃ ┃ ┣ MasterThesis.WebAPI.csproj
+ ┃ ┃ ┣ Program.cs
+ ┃ ┃ ┗ README.md
  ┣ .gitignore
  ┣ MasterThesis.csproj
  ┣ MasterThesis.sln
- ┣ Program.cs
- ┣ README.md
  ┣ Structure.txt
  ┗ todo.md
