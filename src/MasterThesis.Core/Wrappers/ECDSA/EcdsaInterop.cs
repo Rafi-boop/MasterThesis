@@ -1,12 +1,34 @@
 using System;
 using System.Security.Cryptography;
 
+/// <summary>
+/// Managed implementation of ECDSA operations using <see cref="System.Security.Cryptography"/>.
+/// </summary>
+/// <remarks>
+/// This interop uses the built-in .NET cryptographic APIs for ECDSA with the NIST P-256 curve
+/// and SHA-256 hashing. Buffers must be large enough to hold the exported key material.
+/// Returns <c>0</c> on success, non-zero on failure.
+/// </remarks>
 public static class EcdsaInterop
 {
-    public const int CRYPTO_SIGN_PUBLICKEYBYTES = 256; // large enough buffer
-    public const int CRYPTO_SIGN_SECRETKEYBYTES = 512; // large enough buffer
-    public const int CRYPTO_SIGN_BYTES = 72;           // typical DER signature size
+    /// <summary>
+    /// The maximum size of the exported public key in bytes.
+    /// </summary>
+    public const int CRYPTO_SIGN_PUBLICKEYBYTES = 256;
 
+    /// <summary>
+    /// The maximum size of the exported private key in bytes.
+    /// </summary>
+    public const int CRYPTO_SIGN_SECRETKEYBYTES = 512;
+
+    /// <summary>
+    /// The typical size of an ECDSA signature in bytes (DER encoded).
+    /// </summary>
+    public const int CRYPTO_SIGN_BYTES = 72;
+
+    /// <summary>
+    /// Generates a new ECDSA keypair.
+    /// </summary>
     public static int ecdsa_keypair(byte[] publicKey, byte[] privateKey)
     {
         using var ecdsa = ECDsa.Create(ECCurve.NamedCurves.nistP256);
@@ -22,6 +44,9 @@ public static class EcdsaInterop
         return 0;
     }
 
+    /// <summary>
+    /// Signs a message using an ECDSA private key.
+    /// </summary>
     public static int ecdsa_sign(byte[] signature, ref ulong sigLen, byte[] message, ulong messageLength, byte[] privateKey)
     {
         using var ecdsa = ECDsa.Create();
@@ -37,6 +62,9 @@ public static class EcdsaInterop
         return 0;
     }
 
+    /// <summary>
+    /// Verifies an ECDSA signature.
+    /// </summary>
     public static int ecdsa_verify(byte[] signature, ulong sigLen, byte[] message, ulong messageLength, byte[] publicKey)
     {
         using var ecdsa = ECDsa.Create();

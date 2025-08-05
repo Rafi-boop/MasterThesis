@@ -1,5 +1,11 @@
+/// <summary>
+/// Provides the configuration for the SPHINCS+ post-quantum signature scheme.
+/// </summary>
 public static class SphincsConfig
 {
+    /// <summary>
+    /// The predefined SPHINCS+ configuration.
+    /// </summary>
     public static readonly SignatureSchemeConfig Config = new(
         "Sphincs+",
         SphincsInterop.CRYPTO_SIGN_PUBLICKEYBYTES,

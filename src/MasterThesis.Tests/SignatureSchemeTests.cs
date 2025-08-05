@@ -2,8 +2,12 @@ using System;
 using System.Text;
 using Xunit;
 
+/// <summary>
+/// Provides reusable test methods to validate signature scheme implementations.
+/// </summary>
 public static class SignatureSchemeTests
 {
+    /// <summary>Runs the complete set of tests for the specified scheme.</summary>
     public static void RunTests(string schemeName)
     {
         GenerateKeys_ShouldProduceValidKeys(schemeName);
@@ -13,6 +17,7 @@ public static class SignatureSchemeTests
         Verify_ShouldFail_WithCorruptedSignature(schemeName);
     }
 
+    /// <summary>Ensures that key generation produces valid keys.</summary>
     public static void GenerateKeys_ShouldProduceValidKeys(string schemeName)
     {
         var scheme = GetScheme(schemeName);
@@ -22,6 +27,7 @@ public static class SignatureSchemeTests
         Assert.NotNull(keyPair.PrivateKey);
     }
 
+    /// <summary>Ensures signing and verification succeed on valid input.</summary>
     public static void SignAndVerify_ShouldSucceed_OnValidInput(string schemeName)
     {
         var scheme = GetScheme(schemeName);
@@ -35,6 +41,7 @@ public static class SignatureSchemeTests
         Assert.True(valid);
     }
 
+    /// <summary>Ensures verification fails when the message is modified.</summary>
     public static void Verify_ShouldFail_OnModifiedMessage(string schemeName)
     {
         var scheme = GetScheme(schemeName);
@@ -48,6 +55,7 @@ public static class SignatureSchemeTests
         Assert.False(valid);
     }
 
+    /// <summary>Ensures verification fails when using the wrong public key.</summary>
     public static void Verify_ShouldFail_WithWrongPublicKey(string schemeName)
     {
         var scheme = GetScheme(schemeName);
@@ -61,6 +69,7 @@ public static class SignatureSchemeTests
         Assert.False(valid);
     }
 
+    /// <summary>Ensures verification fails with a corrupted signature.</summary>
     public static void Verify_ShouldFail_WithCorruptedSignature(string schemeName)
     {
         var scheme = GetScheme(schemeName);
@@ -74,6 +83,7 @@ public static class SignatureSchemeTests
         Assert.False(valid);
     }
 
+    /// <summary>Gets a dynamically selected scheme by name.</summary>
     private static ISignatureSchemeDynamic GetScheme(string schemeName)
     {
         var selector = new SignatureSchemeSelector();

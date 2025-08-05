@@ -1,5 +1,11 @@
+/// <summary>
+/// Provides the configuration for the Falcon post-quantum signature scheme.
+/// </summary>
 public static class FalconConfig
 {
+    /// <summary>
+    /// The predefined Falcon configuration.
+    /// </summary>
     public static readonly SignatureSchemeConfig Config = new(
         "Falcon",
         FalconInterop.CRYPTO_SIGN_PUBLICKEYBYTES,

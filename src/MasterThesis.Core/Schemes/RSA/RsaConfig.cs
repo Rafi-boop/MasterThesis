@@ -1,5 +1,11 @@
+/// <summary>
+/// Provides the configuration for the RSA signature scheme.
+/// </summary>
 public static class RsaConfig
 {
+    /// <summary>
+    /// The predefined RSA configuration.
+    /// </summary>
     public static readonly SignatureSchemeConfig Config = new(
         "RSA",
         RsaInterop.CRYPTO_SIGN_PUBLICKEYBYTES,

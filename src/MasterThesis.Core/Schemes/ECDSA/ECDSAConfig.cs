@@ -1,5 +1,11 @@
+/// <summary>
+/// Provides the configuration for the ECDSA signature scheme.
+/// </summary>
 public static class EcdsaConfig
 {
+    /// <summary>
+    /// The predefined ECDSA configuration.
+    /// </summary>
     public static readonly SignatureSchemeConfig Config = new(
         "ECDSA",
         EcdsaInterop.CRYPTO_SIGN_PUBLICKEYBYTES,
