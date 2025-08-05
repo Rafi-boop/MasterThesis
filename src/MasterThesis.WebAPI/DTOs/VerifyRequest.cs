@@ -1,9 +1,16 @@
 namespace MasterThesis.WebAPI.DTOs;
 
-// Request object for the verification endpoint
+/// <summary>
+/// Request object for the signature verification endpoint.
+/// </summary>
 public class VerifyRequest
 {
-    public string Message { get; set; } = string.Empty;       // Base64 encoded message
-    public string Signature { get; set; } = string.Empty;     // Base64 encoded signature
-    public string PublicKey { get; set; } = string.Empty;     // Base64 encoded public key
+    /// <summary>Gets or sets the Base64-encoded message to verify.</summary>
+    public string Message { get; set; } = string.Empty;
+
+    /// <summary>Gets or sets the Base64-encoded signature to verify.</summary>
+    public string Signature { get; set; } = string.Empty;
+
+    /// <summary>Gets or sets the Base64-encoded public key used for verification.</summary>
+    public string PublicKey { get; set; } = string.Empty;
 }

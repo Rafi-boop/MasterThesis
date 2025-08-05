@@ -1,0 +1,62 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": [
+            "src/**/*.csproj",
+            "tests/**/*.csproj",
+            "webapi/**/*.csproj"
+          ],
+          "exclude": [ "**/bin/**", "**/obj/**" ]
+        }
+      ],
+      "dest": "api",
+      "properties": {
+        "TargetFramework": "net9.0"
+      }
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [ "api/**.yml", "api/index.md" ]
+      },
+      {
+        "files": [ "**/*.md", "toc.yml" ],
+        "exclude": [ "obj/**", "bin/**" ]
+      }
+    ],
+    "resource": [
+      {
+        "files": [ "images/**" ]
+      }
+    ],
+    "overwrite": [
+      {
+        "files": [ "apidoc/**.md" ]
+      }
+    ],
+    "dest": "docs",
+    "globalMetadata": {
+      "_enableSearch": "true",
+      "_appTitle": "Master Thesis API Documentation",
+      "_appFooter": "Generated with DocFX"
+    },
+    "markdownEngineName": "markdig",
+    "xrefService": [ "https://xref.docs.microsoft.com/query?uid={uid}" ],
+    "template": [
+      "default",
+      "pdf.default"
+    ],
+    "pdf": {
+      "content": [
+        { "files": [ "**/*.yml" ] }
+      ],
+      "dest": "docs/pdf",
+      "wkhtmltopdf": {
+        "additionalArguments": "--print-media-type"
+      }
+    }
+  }
+}

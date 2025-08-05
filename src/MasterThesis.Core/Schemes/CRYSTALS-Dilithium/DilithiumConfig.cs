@@ -1,5 +1,11 @@
+/// <summary>
+/// Provides the configuration for the CRYSTALS-Dilithium signature scheme.
+/// </summary>
 public static class DilithiumConfig
 {
+    /// <summary>
+    /// The predefined Dilithium configuration.
+    /// </summary>
     public static readonly SignatureSchemeConfig Config = new(
         "Dilithium",
         DilithiumInterop.CRYPTO_SIGN_PUBLICKEYBYTES,

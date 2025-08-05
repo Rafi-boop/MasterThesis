@@ -1,83 +1,292 @@
-MasterThesis
- ┣ .git
- ┣ bin
- ┣ build
- ┣ docs
+src
+ ┣ MasterThesis.Core
+ ┃ ┣ bin
+ ┃ ┃ ┗ Debug
+ ┃ ┃ ┃ ┗ net9.0
+ ┃ ┃ ┃ ┃ ┣ dilithium.dll
+ ┃ ┃ ┃ ┃ ┣ falcon.dll
+ ┃ ┃ ┃ ┃ ┣ libsodium.dll
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.Core.deps.json
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.Core.dll
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.Core.pdb
+ ┃ ┃ ┃ ┃ ┗ sphincs.dll
+ ┃ ┣ Core
+ ┃ ┃ ┣ IPrivateKey.cs
+ ┃ ┃ ┣ IPublicKey.cs
+ ┃ ┃ ┣ ISignatureScheme.cs
+ ┃ ┃ ┣ ISignatureSchemeBase.cs
+ ┃ ┃ ┣ ISignatureSchemeDynamic.cs
+ ┃ ┃ ┣ ISignatureSchemeSelector.cs
+ ┃ ┃ ┣ SignatureSchemeAdapter.cs
+ ┃ ┃ ┗ SignatureSchemeSelector.cs
+ ┃ ┣ DTOs
+ ┃ ┃ ┗ KeyPairResponse.cs
+ ┃ ┣ obj
+ ┃ ┃ ┣ Debug
+ ┃ ┃ ┃ ┗ net9.0
+ ┃ ┃ ┃ ┃ ┣ ref
+ ┃ ┃ ┃ ┃ ┃ ┗ MasterThesis.Core.dll
+ ┃ ┃ ┃ ┃ ┣ refint
+ ┃ ┃ ┃ ┃ ┃ ┗ MasterThesis.Core.dll
+ ┃ ┃ ┃ ┃ ┣ .NETCoreApp,Version=v9.0.AssemblyAttributes.cs
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.Core.AssemblyInfo.cs
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.Core.AssemblyInfoInputs.cache
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.Core.assets.cache
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.Core.csproj.CoreCompileInputs.cache
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.Core.csproj.FileListAbsolute.txt
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.Core.dll
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.Core.GeneratedMSBuildEditorConfig.editorconfig
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.Core.GlobalUsings.g.cs
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.Core.pdb
+ ┃ ┃ ┃ ┃ ┗ MasterThesis.Core.sourcelink.json
+ ┃ ┃ ┣ MasterThesis.Core.csproj.nuget.dgspec.json
+ ┃ ┃ ┣ MasterThesis.Core.csproj.nuget.g.props
+ ┃ ┃ ┣ MasterThesis.Core.csproj.nuget.g.targets
+ ┃ ┃ ┣ project.assets.json
+ ┃ ┃ ┗ project.nuget.cache
+ ┃ ┣ Schemes
+ ┃ ┃ ┣ CRYSTALS-Dilithium
+ ┃ ┃ ┃ ┗ DilithiumConfig.cs
+ ┃ ┃ ┣ ECDSA
+ ┃ ┃ ┃ ┗ ECDSAConfig.cs
+ ┃ ┃ ┣ EdDSA
+ ┃ ┃ ┃ ┗ EdDSAConfig.cs
+ ┃ ┃ ┣ Falcon
+ ┃ ┃ ┃ ┗ FalconConfig.cs
+ ┃ ┃ ┣ RSA
+ ┃ ┃ ┃ ┗ RsaConfig.cs
+ ┃ ┃ ┣ SPHINCS+
+ ┃ ┃ ┃ ┗ SphincsConfig.cs
+ ┃ ┃ ┣ GenericPrivateKey.cs
+ ┃ ┃ ┣ GenericPublicKey.cs
+ ┃ ┃ ┣ GenericSignatureScheme.cs
+ ┃ ┃ ┗ SignatureSchemeConfig.cs
+ ┃ ┣ Wrappers
+ ┃ ┃ ┣ CRYSTALS-Dilithium
+ ┃ ┃ ┃ ┗ DilithiumInterop.cs
+ ┃ ┃ ┣ ECDSA
+ ┃ ┃ ┃ ┗ EcdsaInterop.cs
+ ┃ ┃ ┣ EdDSA
+ ┃ ┃ ┃ ┗ SodiumInterop.cs
+ ┃ ┃ ┣ Falcon
+ ┃ ┃ ┃ ┗ FalconInterop.cs
+ ┃ ┃ ┣ RSA
+ ┃ ┃ ┃ ┗ RsaInterop.cs
+ ┃ ┃ ┗ Sphincs+
+ ┃ ┃ ┃ ┗ SphincsInterop.cs
+ ┃ ┣ MasterThesis.Core.csproj
  ┃ ┗ README.md
- ┣ obj
- ┣ runtimes
- ┃ ┗ win-x64
- ┃ ┃ ┗ native
- ┃ ┃ ┃ ┣ dilithium.dll
- ┃ ┃ ┃ ┣ falcon.dll
- ┃ ┃ ┃ ┣ libsodium.dll
- ┃ ┃ ┃ ┗ sphincs.dll
- ┣ src
- ┃ ┣ MasterThesis.Core
- ┃ ┃ ┣ Core
- ┃ ┃ ┃ ┣ IPrivateKey.cs
- ┃ ┃ ┃ ┣ IPublicKey.cs
- ┃ ┃ ┃ ┣ ISignatureScheme.cs
- ┃ ┃ ┃ ┣ ISignatureSchemeBase.cs
- ┃ ┃ ┃ ┣ ISignatureSchemeDynamic.cs
- ┃ ┃ ┃ ┣ ISignatureSchemeSelector.cs
- ┃ ┃ ┃ ┣ SignatureSchemeAdapter.cs
- ┃ ┃ ┃ ┗ SignatureSchemeSelector.cs
- ┃ ┃ ┣ Schemes
- ┃ ┃ ┃ ┣ CRYSTALS-Dilithium
- ┃ ┃ ┃ ┃ ┣ DilithiumPrivateKey.cs
- ┃ ┃ ┃ ┃ ┣ DilithiumPublicKey.cs
- ┃ ┃ ┃ ┃ ┗ DilithiumSignatureScheme.cs
- ┃ ┃ ┃ ┣ ECDSA
- ┃ ┃ ┃ ┃ ┣ EcdsaPrivateKey.cs
- ┃ ┃ ┃ ┃ ┣ EcdsaPublicKey.cs
- ┃ ┃ ┃ ┃ ┗ EcdsaSignatureScheme.cs
- ┃ ┃ ┃ ┣ EdDSA
- ┃ ┃ ┃ ┃ ┣ EdDsaPrivateKey.cs
- ┃ ┃ ┃ ┃ ┣ EdDsaPublicKey.cs
- ┃ ┃ ┃ ┃ ┗ EdDsaSignatureScheme.cs
- ┃ ┃ ┃ ┣ Falcon
- ┃ ┃ ┃ ┃ ┣ FalconPrivateKey.cs
- ┃ ┃ ┃ ┃ ┣ FalconPublicKey.cs
- ┃ ┃ ┃ ┃ ┗ FalconSignatureScheme.cs
- ┃ ┃ ┃ ┣ RSA
- ┃ ┃ ┃ ┃ ┣ RsaPrivateKey.cs
- ┃ ┃ ┃ ┃ ┣ RsaPublicKey.cs
- ┃ ┃ ┃ ┃ ┗ RsaSignatureScheme.cs
- ┃ ┃ ┃ ┗ SPHINCS+
- ┃ ┃ ┃ ┃ ┣ SphincsPrivateKey.cs
- ┃ ┃ ┃ ┃ ┣ SphincsPublicKey.cs
- ┃ ┃ ┃ ┃ ┗ SphincsSignatureScheme.cs
- ┃ ┃ ┣ Wrappers
- ┃ ┃ ┃ ┣ CRYSTALS-Dilithium
- ┃ ┃ ┃ ┃ ┗ DilithiumInterop.cs
- ┃ ┃ ┃ ┣ EdDSA
- ┃ ┃ ┃ ┃ ┗ SodiumInterop.cs
- ┃ ┃ ┃ ┣ Falcon
- ┃ ┃ ┃ ┃ ┗ FalconInterop.cs
- ┃ ┃ ┃ ┗ Sphincs+
- ┃ ┃ ┃ ┃ ┗ SphincsInterop.cs
- ┃ ┃ ┣ MasterThesis.Core.csproj
- ┃ ┃ ┗ README.md
- ┃ ┣ MasterThesis.Tests
- ┃ ┃ ┣ AllSignatureSchemesTests.cs
- ┃ ┃ ┣ MasterThesis.Tests.csproj
- ┃ ┃ ┣ README.md
- ┃ ┃ ┣ SignatureSchemeTests.cs
- ┃ ┃ ┗ testsetttings.json
- ┃ ┗ MasterThesis.WebAPI
- ┃ ┃ ┣ Controllers
- ┃ ┃ ┃ ┗ SignatureController.cs
- ┃ ┃ ┣ DTOs
- ┃ ┃ ┃ ┣ KeyPairResponse.cs
- ┃ ┃ ┃ ┣ SignRequest.cs
- ┃ ┃ ┃ ┗ VerifyRequest.cs
- ┃ ┃ ┣ appsettings.json
- ┃ ┃ ┣ MasterThesis.WebAPI.csproj
- ┃ ┃ ┣ Program.cs
- ┃ ┃ ┗ README.md
- ┣ .gitignore
- ┣ MasterThesis.csproj
- ┣ MasterThesis.sln
- ┣ Structure.txt
- ┗ todo.md
+ ┣ MasterThesis.Tests
+ ┃ ┣ bin
+ ┃ ┃ ┗ Debug
+ ┃ ┃ ┃ ┗ net9.0
+ ┃ ┃ ┃ ┃ ┣ cs
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CoreUtilities.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┗ Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+ ┃ ┃ ┃ ┃ ┣ de
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CoreUtilities.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┗ Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+ ┃ ┃ ┃ ┃ ┣ es
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CoreUtilities.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┗ Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+ ┃ ┃ ┃ ┃ ┣ fr
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CoreUtilities.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┗ Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+ ┃ ┃ ┃ ┃ ┣ it
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CoreUtilities.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┗ Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+ ┃ ┃ ┃ ┃ ┣ ja
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CoreUtilities.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┗ Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+ ┃ ┃ ┃ ┃ ┣ ko
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CoreUtilities.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┗ Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+ ┃ ┃ ┃ ┃ ┣ pl
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CoreUtilities.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┗ Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+ ┃ ┃ ┃ ┃ ┣ pt-BR
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CoreUtilities.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┗ Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+ ┃ ┃ ┃ ┃ ┣ ru
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CoreUtilities.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┗ Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+ ┃ ┃ ┃ ┃ ┣ tr
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CoreUtilities.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┗ Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+ ┃ ┃ ┃ ┃ ┣ zh-Hans
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CoreUtilities.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┗ Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+ ┃ ┃ ┃ ┃ ┣ zh-Hant
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CoreUtilities.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┣ Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+ ┃ ┃ ┃ ┃ ┃ ┗ Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+ ┃ ┃ ┃ ┃ ┣ .msCoverageSourceRootsMapping_MasterThesis.Tests
+ ┃ ┃ ┃ ┃ ┣ CoverletSourceRootsMapping_MasterThesis.Tests
+ ┃ ┃ ┃ ┃ ┣ dilithium.dll
+ ┃ ┃ ┃ ┃ ┣ falcon.dll
+ ┃ ┃ ┃ ┃ ┣ libsodium.dll
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.Core.dll
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.Core.pdb
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.Tests.deps.json
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.Tests.dll
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.Tests.pdb
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.Tests.runtimeconfig.json
+ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CommunicationUtilities.dll
+ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CoreUtilities.dll
+ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.CrossPlatEngine.dll
+ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.PlatformAbstractions.dll
+ ┃ ┃ ┃ ┃ ┣ Microsoft.TestPlatform.Utilities.dll
+ ┃ ┃ ┃ ┃ ┣ Microsoft.VisualStudio.CodeCoverage.Shim.dll
+ ┃ ┃ ┃ ┃ ┣ Microsoft.VisualStudio.TestPlatform.Common.dll
+ ┃ ┃ ┃ ┃ ┣ Microsoft.VisualStudio.TestPlatform.ObjectModel.dll
+ ┃ ┃ ┃ ┃ ┣ Newtonsoft.Json.dll
+ ┃ ┃ ┃ ┃ ┣ sphincs.dll
+ ┃ ┃ ┃ ┃ ┣ testhost.dll
+ ┃ ┃ ┃ ┃ ┣ testhost.exe
+ ┃ ┃ ┃ ┃ ┣ xunit.abstractions.dll
+ ┃ ┃ ┃ ┃ ┣ xunit.assert.dll
+ ┃ ┃ ┃ ┃ ┣ xunit.core.dll
+ ┃ ┃ ┃ ┃ ┣ xunit.execution.dotnet.dll
+ ┃ ┃ ┃ ┃ ┣ xunit.runner.reporters.netcoreapp10.dll
+ ┃ ┃ ┃ ┃ ┣ xunit.runner.utility.netcoreapp10.dll
+ ┃ ┃ ┃ ┃ ┗ xunit.runner.visualstudio.testadapter.dll
+ ┃ ┣ obj
+ ┃ ┃ ┣ Debug
+ ┃ ┃ ┃ ┗ net9.0
+ ┃ ┃ ┃ ┃ ┣ ref
+ ┃ ┃ ┃ ┃ ┃ ┗ MasterThesis.Tests.dll
+ ┃ ┃ ┃ ┃ ┣ refint
+ ┃ ┃ ┃ ┃ ┃ ┗ MasterThesis.Tests.dll
+ ┃ ┃ ┃ ┃ ┣ .NETCoreApp,Version=v9.0.AssemblyAttributes.cs
+ ┃ ┃ ┃ ┃ ┣ MasterTh.2AA9A8D5.Up2Date
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.Tests.AssemblyInfo.cs
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.Tests.AssemblyInfoInputs.cache
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.Tests.assets.cache
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.Tests.csproj.AssemblyReference.cache
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.Tests.csproj.CoreCompileInputs.cache
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.Tests.csproj.FileListAbsolute.txt
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.Tests.dll
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.Tests.GeneratedMSBuildEditorConfig.editorconfig
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.Tests.genruntimeconfig.cache
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.Tests.GlobalUsings.g.cs
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.Tests.pdb
+ ┃ ┃ ┃ ┃ ┗ MasterThesis.Tests.sourcelink.json
+ ┃ ┃ ┣ MasterThesis.Tests.csproj.nuget.dgspec.json
+ ┃ ┃ ┣ MasterThesis.Tests.csproj.nuget.g.props
+ ┃ ┃ ┣ MasterThesis.Tests.csproj.nuget.g.targets
+ ┃ ┃ ┣ project.assets.json
+ ┃ ┃ ┗ project.nuget.cache
+ ┃ ┣ AllSignatureSchemesTests.cs
+ ┃ ┣ MasterThesis.Tests.csproj
+ ┃ ┣ README.md
+ ┃ ┣ SignatureSchemeTests.cs
+ ┃ ┗ testsetttings.json
+ ┗ MasterThesis.WebAPI
+ ┃ ┣ bin
+ ┃ ┃ ┗ Debug
+ ┃ ┃ ┃ ┗ net9.0
+ ┃ ┃ ┃ ┃ ┣ appsettings.json
+ ┃ ┃ ┃ ┃ ┣ dilithium.dll
+ ┃ ┃ ┃ ┃ ┣ falcon.dll
+ ┃ ┃ ┃ ┃ ┣ libsodium.dll
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.Core.dll
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.Core.pdb
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.WebAPI.deps.json
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.WebAPI.dll
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.WebAPI.exe
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.WebAPI.pdb
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.WebAPI.runtimeconfig.json
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.WebAPI.staticwebassets.endpoints.json
+ ┃ ┃ ┃ ┃ ┣ Microsoft.AspNetCore.JsonPatch.dll
+ ┃ ┃ ┃ ┃ ┣ Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+ ┃ ┃ ┃ ┃ ┣ Microsoft.OpenApi.dll
+ ┃ ┃ ┃ ┃ ┣ Newtonsoft.Json.Bson.dll
+ ┃ ┃ ┃ ┃ ┣ Newtonsoft.Json.dll
+ ┃ ┃ ┃ ┃ ┣ sphincs.dll
+ ┃ ┃ ┃ ┃ ┣ Swashbuckle.AspNetCore.Swagger.dll
+ ┃ ┃ ┃ ┃ ┣ Swashbuckle.AspNetCore.SwaggerGen.dll
+ ┃ ┃ ┃ ┃ ┗ Swashbuckle.AspNetCore.SwaggerUI.dll
+ ┃ ┣ Controllers
+ ┃ ┃ ┗ SignatureController.cs
+ ┃ ┣ DTOs
+ ┃ ┃ ┣ SignRequest.cs
+ ┃ ┃ ┗ VerifyRequest.cs
+ ┃ ┣ obj
+ ┃ ┃ ┣ Debug
+ ┃ ┃ ┃ ┗ net9.0
+ ┃ ┃ ┃ ┃ ┣ ref
+ ┃ ┃ ┃ ┃ ┃ ┗ MasterThesis.WebAPI.dll
+ ┃ ┃ ┃ ┃ ┣ refint
+ ┃ ┃ ┃ ┃ ┃ ┗ MasterThesis.WebAPI.dll
+ ┃ ┃ ┃ ┃ ┣ staticwebassets
+ ┃ ┃ ┃ ┃ ┣ .NETCoreApp,Version=v9.0.AssemblyAttributes.cs
+ ┃ ┃ ┃ ┃ ┣ apphost.exe
+ ┃ ┃ ┃ ┃ ┣ MasterTh.BA05C902.Up2Date
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.WebAPI.AssemblyInfo.cs
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.WebAPI.AssemblyInfoInputs.cache
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.WebAPI.assets.cache
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.WebAPI.csproj.AssemblyReference.cache
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.WebAPI.csproj.CoreCompileInputs.cache
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.WebAPI.csproj.FileListAbsolute.txt
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.WebAPI.dll
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.WebAPI.GeneratedMSBuildEditorConfig.editorconfig
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.WebAPI.genruntimeconfig.cache
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.WebAPI.GlobalUsings.g.cs
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.WebAPI.MvcApplicationPartsAssemblyInfo.cache
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.WebAPI.MvcApplicationPartsAssemblyInfo.cs
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.WebAPI.pdb
+ ┃ ┃ ┃ ┃ ┣ MasterThesis.WebAPI.sourcelink.json
+ ┃ ┃ ┃ ┃ ┣ rbcswa.dswa.cache.json
+ ┃ ┃ ┃ ┃ ┣ rjsmcshtml.dswa.cache.json
+ ┃ ┃ ┃ ┃ ┣ rjsmrazor.dswa.cache.json
+ ┃ ┃ ┃ ┃ ┣ rpswa.dswa.cache.json
+ ┃ ┃ ┃ ┃ ┣ staticwebassets.build.endpoints.json
+ ┃ ┃ ┃ ┃ ┣ staticwebassets.build.json
+ ┃ ┃ ┃ ┃ ┗ staticwebassets.build.json.cache
+ ┃ ┃ ┣ MasterThesis.WebAPI.csproj.nuget.dgspec.json
+ ┃ ┃ ┣ MasterThesis.WebAPI.csproj.nuget.g.props
+ ┃ ┃ ┣ MasterThesis.WebAPI.csproj.nuget.g.targets
+ ┃ ┃ ┣ project.assets.json
+ ┃ ┃ ┗ project.nuget.cache
+ ┃ ┣ appsettings.json
+ ┃ ┣ MasterThesis.WebAPI.csproj
+ ┃ ┣ Program.cs
+ ┃ ┗ README.md

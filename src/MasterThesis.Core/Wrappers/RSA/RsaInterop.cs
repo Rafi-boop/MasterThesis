@@ -1,13 +1,34 @@
 using System;
 using System.Security.Cryptography;
 
+/// <summary>
+/// Managed implementation of RSA operations using <see cref="System.Security.Cryptography"/>.
+/// </summary>
+/// <remarks>
+/// This interop uses .NET's built-in RSA cryptographic APIs with a default key size of 4096 bits
+/// and SHA-512 hashing. Buffers must be large enough to hold exported key material.
+/// Returns <c>0</c> on success, non-zero on failure.
+/// </remarks>
 public static class RsaInterop
 {
-    // Sizes here are only defaults for preallocation in configs — actual lengths may vary
-    public const int CRYPTO_SIGN_PUBLICKEYBYTES = 2048; 
-    public const int CRYPTO_SIGN_SECRETKEYBYTES = 4096; 
-    public const int CRYPTO_SIGN_BYTES = 512;           
+    /// <summary>
+    /// Default buffer size for an exported RSA public key (bytes).
+    /// </summary>
+    public const int CRYPTO_SIGN_PUBLICKEYBYTES = 2048;
 
+    /// <summary>
+    /// Default buffer size for an exported RSA private key (bytes).
+    /// </summary>
+    public const int CRYPTO_SIGN_SECRETKEYBYTES = 4096;
+
+    /// <summary>
+    /// Default buffer size for an RSA signature (bytes).
+    /// </summary>
+    public const int CRYPTO_SIGN_BYTES = 512;
+
+    /// <summary>
+    /// Generates a new RSA keypair (4096-bit).
+    /// </summary>
     public static int rsa_keypair(byte[] publicKey, byte[] privateKey)
     {
         using var rsa = RSA.Create(4096);
@@ -23,6 +44,9 @@ public static class RsaInterop
         return 0;
     }
 
+    /// <summary>
+    /// Signs a message using an RSA private key with SHA-512 and PKCS#1 padding.
+    /// </summary>
     public static int rsa_sign(byte[] signature, ref ulong sigLen, byte[] message, ulong messageLength, byte[] privateKey)
     {
         using var rsa = RSA.Create();
@@ -38,6 +62,9 @@ public static class RsaInterop
         return 0;
     }
 
+    /// <summary>
+    /// Verifies an RSA signature using SHA-512 and PKCS#1 padding.
+    /// </summary>
     public static int rsa_verify(byte[] signature, ulong sigLen, byte[] message, ulong messageLength, byte[] publicKey)
     {
         using var rsa = RSA.Create();

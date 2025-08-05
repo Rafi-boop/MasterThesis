@@ -1,8 +1,13 @@
 namespace MasterThesis.WebAPI.DTOs;
 
-// Request object for the signing endpoint
+/// <summary>
+/// Request object for the signing endpoint.
+/// </summary>
 public class SignRequest
 {
-    public string Message { get; set; } = string.Empty;       // Base64 encoded message
-    public string PrivateKey { get; set; } = string.Empty;    // Base64 encoded private key
+    /// <summary>Gets or sets the Base64-encoded message to sign.</summary>
+    public string Message { get; set; } = string.Empty;
+
+    /// <summary>Gets or sets the Base64-encoded private key to use for signing.</summary>
+    public string PrivateKey { get; set; } = string.Empty;
 }
