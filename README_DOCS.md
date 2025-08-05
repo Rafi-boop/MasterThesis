@@ -17,16 +17,7 @@ Check version:
 docfx --version
 ```
 
-## 2. Enable XML Documentation in all .csproj files
-
-In each `.csproj` (`Core`, `.WebAPI`, `.Tests`), add inside `<PropertyGroup>`:
-
-```xml
-<GenerateDocumentationFile>true</GenerateDocumentationFile>
-<NoWarn>1591</NoWarn>
-```
-
-## 3. Generate Metadata
+## 2. Generate Metadata
 
 From the root of the repository:
 
@@ -34,7 +25,7 @@ From the root of the repository:
 docfx metadata
 ```
 
-## 4. Build HTML Docs
+## 3. Build HTML Docs
 
 ```bash
 docfx build
@@ -43,7 +34,7 @@ docfx build
 * Output will be in the `docs/` folder.
 * Open `docs/index.html` in a browser.
 
-## 5. Generate PDF Docs
+## 4. Generate PDF Docs
 
 ```bash
 docfx pdf
