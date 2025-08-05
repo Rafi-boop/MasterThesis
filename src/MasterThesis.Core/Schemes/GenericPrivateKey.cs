@@ -1,14 +1,14 @@
 using System.Runtime.InteropServices;
 
-public sealed class DilithiumPrivateKey : IPrivateKey
+public sealed class GenericPrivateKey : IPrivateKey
 {
     private byte[] _key;
     private GCHandle _pinned;
 
-    public DilithiumPrivateKey(byte[] key)
+    public GenericPrivateKey(byte[] key, int expectedLength)
     {
-        if (key == null || key.Length != DilithiumInterop.CRYPTO_SIGN_SECRETKEYBYTES)
-            throw new ArgumentException($"Invalid Dilithium private key length. Expected {DilithiumInterop.CRYPTO_SIGN_SECRETKEYBYTES} bytes.");
+        if (key == null || key.Length != expectedLength)
+            throw new ArgumentException($"Invalid private key length. Expected {expectedLength} bytes.");
 
         _key = key.ToArray();
         _pinned = GCHandle.Alloc(_key, GCHandleType.Pinned);
@@ -20,7 +20,7 @@ public sealed class DilithiumPrivateKey : IPrivateKey
 
     public void Zeroize()
     {
-        if (_key != null && _key.Length > 0)
+        if (_key.Length > 0)
         {
             Array.Clear(_key, 0, _key.Length);
             _pinned.Free();

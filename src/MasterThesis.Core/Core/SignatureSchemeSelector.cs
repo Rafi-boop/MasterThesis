@@ -1,20 +1,28 @@
 using System;
 using System.Collections.Generic;
 
-// implementation of ISignatureSchemeSelector, registers supported signature schemes and resolves them dynamically at runtime
 public class SignatureSchemeSelector : ISignatureSchemeSelector
 {
     private readonly Dictionary<string, object> _schemes = new(StringComparer.OrdinalIgnoreCase);
 
     public SignatureSchemeSelector()
     {
-        // Register supported schemes
-        _schemes["rsa"] = new SignatureSchemeAdapter<RsaPublicKey, RsaPrivateKey>(new RsaSignatureScheme());
-        _schemes["ecdsa"] = new SignatureSchemeAdapter<EdDsaPublicKey, EdDsaPrivateKey>(new EdDsaSignatureScheme());
-        _schemes["eddsa"] = new SignatureSchemeAdapter<EdDsaPublicKey, EdDsaPrivateKey>(new EdDsaSignatureScheme());
-        _schemes["dilithium"] = new SignatureSchemeAdapter<RsaPublicKey, RsaPrivateKey>(new RsaSignatureScheme());
-        _schemes["sphincs"] = new SignatureSchemeAdapter<EdDsaPublicKey, EdDsaPrivateKey>(new EdDsaSignatureScheme());
-        _schemes["falcon"] = new SignatureSchemeAdapter<EdDsaPublicKey, EdDsaPrivateKey>(new EdDsaSignatureScheme());
+        // Register all supported schemes using GenericSignatureScheme + configs
+        RegisterScheme("rsa", RsaConfig.Config);
+        RegisterScheme("ecdsa", EcdsaConfig.Config);
+        RegisterScheme("eddsa", EdDsaConfig.Config);
+        RegisterScheme("dilithium", DilithiumConfig.Config);
+        RegisterScheme("sphincs", SphincsConfig.Config);
+        RegisterScheme("falcon", FalconConfig.Config);
+    }
+
+    private void RegisterScheme(string name, SignatureSchemeConfig config)
+    {
+        _schemes[name] = new SignatureSchemeAdapter<GenericPublicKey, GenericPrivateKey>(
+            new GenericSignatureScheme(config),
+            config.PublicKeySize,
+            config.PrivateKeySize
+        );
     }
 
     public object GetRawScheme(string name)
