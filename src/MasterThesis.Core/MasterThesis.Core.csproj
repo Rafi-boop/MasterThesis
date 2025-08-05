@@ -1,18 +1,35 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <IsPackable>true</IsPackable>
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
+    <!-- Documentation XML -->
     <GenerateDocumentationFile>true</GenerateDocumentationFile>  
     <NoWarn>1591</NoWarn>
+
+    <!-- NuGet metadata -->
+    <PackageId>PrePostQuantumSignatureAPI</PackageId>
+    <Version>1.0.1</Version>
+    <Authors>Rafael Baumgartner</Authors>
+    <Company>Your Organization</Company>
+    <Description>API Framework for Pre- and Post-Quantum Digital Signature Schemes in C#</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/Rafi-boop/MasterThesis.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>cryptography digital-signature post-quantum rsa ecdsa dilithium sphincs falcon</PackageTags>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <!-- Native DLLs needed for runtime -->
   <ItemGroup>
     <None Include="..\..\runtimes\win-x64\native\*.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>true</Pack>
+      <PackagePath>runtimes/win-x64/native</PackagePath>
     </None>
   </ItemGroup>
 
