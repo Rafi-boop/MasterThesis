@@ -28,4 +28,8 @@ public class AllSignatureSchemesTests
     /// <summary>Tests the SPHINCS+ signature scheme.</summary>
     [Fact]
     public void TestSphincsScheme() => SignatureSchemeTests.RunTests("sphincs");
+
+    /// <summary>Runs performance measurements for all six schemes and emits a CSV.</summary>
+    [Fact(DisplayName = "Performance: KeyGen/Sign/Verify across all schemes")]
+    public void RunPerformance() => SignatureSchemePerformanceHarness.Run();
 }

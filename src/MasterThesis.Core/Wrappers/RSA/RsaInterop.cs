@@ -5,33 +5,33 @@ using System.Security.Cryptography;
 /// Managed implementation of RSA operations using <see cref="System.Security.Cryptography"/>.
 /// </summary>
 /// <remarks>
-/// This interop uses .NET's built-in RSA cryptographic APIs with a default key size of 4096 bits
-/// and SHA-512 hashing. Buffers must be large enough to hold exported key material.
-/// Returns <c>0</c> on success, non-zero on failure.
+/// This interop uses .NET's built-in RSA cryptographic APIs with a 15360-bit key (≈256-bit classical security)
+/// and SHA-512 hashing. Buffers must be large enough to hold exported key material. Returns <c>0</c> on success,
+/// non-zero on failure.
 /// </remarks>
 public static class RsaInterop
 {
     /// <summary>
-    /// Default buffer size for an exported RSA public key (bytes).
+    /// Upper bound for an exported RSA public key (RSAPublicKey, DER). Generous for 15360-bit.
     /// </summary>
-    public const int CRYPTO_SIGN_PUBLICKEYBYTES = 2048;
+    public const int CRYPTO_SIGN_PUBLICKEYBYTES = 4096;
 
     /// <summary>
-    /// Default buffer size for an exported RSA private key (bytes).
+    /// Upper bound for an exported RSA private key (RSAPrivateKey, DER). Generous for 15360-bit.
     /// </summary>
-    public const int CRYPTO_SIGN_SECRETKEYBYTES = 4096;
+    public const int CRYPTO_SIGN_SECRETKEYBYTES = 16384;
 
     /// <summary>
-    /// Default buffer size for an RSA signature (bytes).
+    /// Exact length of an RSA signature equals the modulus size in bytes (15360/8 = 1920).
     /// </summary>
-    public const int CRYPTO_SIGN_BYTES = 512;
+    public const int CRYPTO_SIGN_BYTES = 1920;
 
     /// <summary>
-    /// Generates a new RSA keypair (4096-bit).
+    /// Generates a new RSA keypair (15360-bit).
     /// </summary>
     public static int rsa_keypair(byte[] publicKey, byte[] privateKey)
     {
-        using var rsa = RSA.Create(4096);
+        using var rsa = RSA.Create(15360);
         var pub = rsa.ExportRSAPublicKey();
         var priv = rsa.ExportRSAPrivateKey();
 
@@ -40,12 +40,11 @@ public static class RsaInterop
 
         Array.Copy(pub, publicKey, pub.Length);
         Array.Copy(priv, privateKey, priv.Length);
-
         return 0;
     }
 
     /// <summary>
-    /// Signs a message using an RSA private key with SHA-512 and PKCS#1 padding.
+    /// Signs a message using an RSA private key with SHA-512 and PKCS#1 v1.5 padding.
     /// </summary>
     public static int rsa_sign(byte[] signature, ref ulong sigLen, byte[] message, ulong messageLength, byte[] privateKey)
     {
@@ -58,12 +57,11 @@ public static class RsaInterop
 
         Array.Copy(sig, signature, sig.Length);
         sigLen = (ulong)sig.Length;
-
         return 0;
     }
 
     /// <summary>
-    /// Verifies an RSA signature using SHA-512 and PKCS#1 padding.
+    /// Verifies an RSA signature using SHA-512 and PKCS#1 v1.5 padding.
     /// </summary>
     public static int rsa_verify(byte[] signature, ulong sigLen, byte[] message, ulong messageLength, byte[] publicKey)
     {
